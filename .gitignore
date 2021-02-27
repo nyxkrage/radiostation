@@ -1,0 +1,5 @@
+data/music/*
+secrets.py
+__pycache__/
+env/
+data/config/mpd/*

@@ -1,0 +1,20 @@
+version: '3.3'
+services:
+  radiopy:
+    image: radiopy
+    build: .
+    volumes:
+      - './data/music:/app/mp3'
+      - './tmp:/app/mp4'
+      - './downloader.status:/app/downloader.status'
+    restart: unless-stopped
+  mpd:
+    image: vimagick/mpd
+    ports:
+      - "6601:6600"
+      - "8800:8800"
+    volumes:
+      - './data/config:/root/.config'
+      - './data/music:/root/music'
+      - './data/playlists:/root/playlists'
+    restart: unless-stopped
