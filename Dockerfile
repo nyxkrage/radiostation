@@ -1,12 +1,10 @@
-FROM python:3.8-buster
+FROM node:10
+WORKDIR /usr/src/app
+COPY package*.json ./
+RUN npm install
+COPY index.js index.js
+COPY static static
+EXPOSE 8801
 
-WORKDIR /app
-COPY requirements.txt requirements.txt
+CMD [ "node", "index.js" ]
 
-RUN apt-get update && apt-get -y install ffmpeg
-RUN pip3 install -r requirements.txt
-COPY radio.py radio.py
-COPY secrets.py secrets.py
-
-# Run the command on container startup
-CMD python radio.py

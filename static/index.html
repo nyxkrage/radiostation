@@ -1,0 +1,34 @@
+<head>
+	<title>Nyx' Radio</title>
+	<link rel="stylesheet" href="style.css"/>
+<head/>
+<body class="dark">
+	<button id="theme-icon"></button>
+	<div id="audio-player-container">
+		<wrapper>
+			<p id="title">Audio Player</p>
+		</wrapper>
+		<audio src="" preload="metadata" loop></audio>
+		<!-- swaps with pause icon -->
+		<wrapper>
+			<button id="play-icon"></button>
+		</wrapper>
+		<output id="volume-output">100</output>
+		<input type="range" id="volume-slider" max="100" value="100">
+		<button id="mute-icon"></button>
+	</div>
+	<div id="listeners">
+		<button id="listeners-icon"></button>
+		<span><b>Current Listeners</b>: <span id="listener_count"></span></span><br/>
+	</div>
+	<div id="help">
+		<span><b>Space</b>: Play/Pause</span><br/>
+		<span><b>M</b>: Mute/Unmute</span><br/>
+		<span><b>J</b>: Volume down</span><br/>
+		<span><b>L</b>: Volume up</span><br/>
+		<span><b>T</b>: Switch Theme</span><br/>
+	</div>
+	<div id="recent">
+	</div>
+	<script src="script.js" type="module"></script>
+<body/>

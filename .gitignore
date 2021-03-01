@@ -1,5 +1,2 @@
-data/music/*
-secrets.py
-__pycache__/
-env/
-data/config/mpd/*
+node_module/
+package-lock.json
