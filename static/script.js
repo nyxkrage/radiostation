@@ -137,36 +137,23 @@ volumeSlider.addEventListener("input", (e) => {
 
 const title = document.getElementById("title");
 const recent = document.getElementById("recent");
+const songlist = document.getElementById("songlist");
 
 const es = new EventSource("/status");
 es.addEventListener("songs", function (event) {
   let data = JSON.parse(event.data);
   title.innerText = data[data.length - 1].key;
   document.title = data[data.length - 1].key;
-  recent.innerHTML =
-    "<span class='header'><b>Recent songs</b></span><br>" +
-    data
+  songlist.className = "done";
+  setTimeout(() => {
+    songlist.innerHTML = data
       .reverse()
       .map((kv, i) => {
-        if (i == 0) {
-          return "";
-        }
-        if (i == 9) {
-          return `<span fade>${kv.key}</span>`;
-        }
         return `<span>${kv.key}</span>`;
       })
-      .filter((e) => {
-        return e !== "";
-      })
       .join("<br/>");
-  recent.className = "";
-  setTimeout(() => {
-    if (recent.lastElementChild.hasAttribute("fade")) {
-      recent.className = "small";
-      recent.lastElementChild.className = "fade";
-    }
-  }, 1200);
+    songlist.className = "";
+  }, 2000);
 });
 
 es.addEventListener("clients", function (event) {
