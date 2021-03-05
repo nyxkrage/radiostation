@@ -98,7 +98,6 @@ const durationContainer = document.getElementById("duration");
 const currentTimeContainer = document.getElementById("current-time");
 const outputContainer = document.getElementById("volume-output");
 window.addEventListener("load", (event) => {
-  audio.src = "/raw";
   playState == "pause";
   playAnimation.goToAndStop(14, true);
   let v = getCookie("muteState");
@@ -160,25 +159,20 @@ es.addEventListener("clients", function (event) {
   num_clients.innerText = event.data;
 });
 
-let firstTime = true;
 function playpause() {
-  if (playState === "pause" && firstTime) {
+  if (playState === "pause") {
+    audio.src = "/raw";
     audio.play();
-    firstTime = false;
-    playAnimation.playSegments([14, 27], true);
-    requestAnimationFrame(whilePlaying);
-    playState = "play";
-  } else if (playState === "pause") {
     playAnimation.playSegments([14, 27], true);
     requestAnimationFrame(whilePlaying);
     playState = "play";
   } else {
+    audio.pause();
+    audio.src = "";
     playAnimation.playSegments([0, 14], true);
     cancelAnimationFrame(raf);
     playState = "pause";
   }
-  let shouldMute = muteState == "unmute" && playState == "play";
-  audio.muted = shouldMute ? false : true;
 }
 
 function mute() {
@@ -189,8 +183,7 @@ function mute() {
     muteAnimation.playSegments([15, 25], true);
     muteState = "unmute";
   }
-  let shouldMute = muteState == "unmute" && playState == "play";
-  audio.muted = shouldMute ? false : true;
+  audio.muted = muteState == "mute" ? false : true;
 }
 
 function theme() {
