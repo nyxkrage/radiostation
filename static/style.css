@@ -35,6 +35,8 @@ button {
 #audio-player-container {
   --seek-before-width: 0%;
   --volume-before-width: 100%;
+  --progress-low: 0%;
+  --progress-high: 100%;
   --buffered-width: 0%;
   position: relative;
   width: 95%;
@@ -51,7 +53,11 @@ button {
   height: calc(100% + 4px);
   left: -2px;
   top: -2px;
-  background: linear-gradient(to left, #007db5, #ff8a00);
+  background: linear-gradient(
+    to right,
+    #ff8a00 0 var(--progress-low),
+    #007db5 var(--progress-high) 100%
+  );
   z-index: -1;
 }
 p {

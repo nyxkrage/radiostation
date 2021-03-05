@@ -137,8 +137,26 @@ volumeSlider.addEventListener("input", (e) => {
 const title = document.getElementById("title");
 const recent = document.getElementById("recent");
 const songlist = document.getElementById("songlist");
+let timer = 0;
+let songlength = 1;
+setInterval(() => {
+  let percent = (timer / songlength) * 100;
+  let low = percent - 5;
+  low = low < 0 ? 0 : low;
+  let high = percent + 5;
+  high = high < 0 ? 0 : high;
+  audioPlayerContainer.style.setProperty("--progress-high", high + "%");
+  audioPlayerContainer.style.setProperty("--progress-low", low + "%");
+  timer++;
+}, 1000);
 
 const es = new EventSource("/status");
+es.addEventListener("time", function (event) {
+  let data = event.data.replace('"', "");
+  let time = data.split(":");
+  songlength = parseInt(time[1]);
+  timer = parseInt(time[0]);
+});
 es.addEventListener("songs", function (event) {
   let data = JSON.parse(event.data);
   title.innerText = data[data.length - 1].key;
