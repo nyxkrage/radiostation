@@ -54,7 +54,8 @@ button {
   left: -2px;
   top: -2px;
   background: linear-gradient(
-    to right,
+    to top,
+    ,
     #ff8a00 0 var(--progress-low),
     #007db5 var(--progress-high) 100%
   );
@@ -120,6 +121,27 @@ output {
   height: 60px;
   top: 40px;
   left: 40px;
+}
+#github-icon {
+  position: fixed;
+  width: 48px;
+  height: 48px;
+  top: 256px;
+  left: 46px;
+}
+#homepage-icon {
+  position: fixed;
+  width: 48px;
+  height: 48px;
+  top: 120px;
+  left: 46px;
+}
+#spotify-icon {
+  position: fixed;
+  width: 48px;
+  height: 48px;
+  top: 188px;
+  left: 46px;
 }
 #help {
   color: var(--fg);
